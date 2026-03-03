@@ -63,11 +63,11 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
     implementation("androidx.compose.material:material:1.10.3")
-
+    implementation("androidx.navigation:navigation-compose:2.7.3")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+    implementation("androidx.constraintlayout:constraintlayout-compose:1.1.1")
 
-    implementation("androidx.navigation:navigation-compose:2.7.3")
     implementation("androidx.datastore:datastore-preferences:1.1.0")
 
     // Hilt
