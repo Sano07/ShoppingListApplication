@@ -1,4 +1,4 @@
-package com.example.shoppinglistapplication.add_iten_screen
+package com.example.shoppinglistapplication.add_item_screen
 
 import androidx.compose.runtime.Composable
 
