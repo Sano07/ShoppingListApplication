@@ -1,11 +1,11 @@
-package com.example.shoppinglistapplication.data.dao
+package com.example.shoppinglistapplication.roomData.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.shoppinglistapplication.data.entity.ShoppingListTableEntity
+import com.example.shoppinglistapplication.roomData.entity.ShoppingListTableEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao

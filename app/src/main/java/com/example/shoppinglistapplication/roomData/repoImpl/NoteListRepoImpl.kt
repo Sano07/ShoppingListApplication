@@ -1,8 +1,8 @@
-package com.example.shoppinglistapplication.data.repoImpl
+package com.example.shoppinglistapplication.roomData.repoImpl
 
-import com.example.shoppinglistapplication.data.entity.NoteItemTableEntity
-import com.example.shoppinglistapplication.data.repository.NoteListRepository
-import com.example.shoppinglistapplication.data.dao.NoteItemDao
+import com.example.shoppinglistapplication.roomData.entity.NoteItemTableEntity
+import com.example.shoppinglistapplication.roomData.repository.NoteListRepository
+import com.example.shoppinglistapplication.roomData.dao.NoteItemDao
 import kotlinx.coroutines.flow.Flow
 
 class NoteListRepoImpl(

@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.example.shoppinglistapplication.shop_list_screen.ShopListScreen
+import com.example.shoppinglistapplication.nav_line.ShopListScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -1,7 +1,6 @@
-package com.example.shoppinglistapplication.data.repository
+package com.example.shoppinglistapplication.roomData.repository
 
-import com.example.shoppinglistapplication.data.dao.NoteItemDao
-import com.example.shoppinglistapplication.data.entity.NoteItemTableEntity
+import com.example.shoppinglistapplication.roomData.entity.NoteItemTableEntity
 import kotlinx.coroutines.flow.Flow
 
 interface NoteListRepository {

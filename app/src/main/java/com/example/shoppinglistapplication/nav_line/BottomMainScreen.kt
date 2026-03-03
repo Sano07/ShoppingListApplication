@@ -1,4 +1,4 @@
-package com.example.shoppinglistapplication.shop_list_screen
+package com.example.shoppinglistapplication.nav_line
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -11,7 +11,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.shoppinglistapplication.R
-import com.example.shoppinglistapplication.nav_line.BottomNavLine
 import com.example.shoppinglistapplication.ui.theme.Orange
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")

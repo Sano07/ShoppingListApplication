@@ -2,13 +2,13 @@ package com.example.shoppinglistapplication.dependencyInjectionHilt
 
 import android.app.Application
 import androidx.room.Room
-import com.example.shoppinglistapplication.data.MainDB
-import com.example.shoppinglistapplication.data.repoImpl.AddItemRepoImpl
-import com.example.shoppinglistapplication.data.repoImpl.NoteListRepoImpl
-import com.example.shoppinglistapplication.data.repoImpl.ShoppingListRepoImpl
-import com.example.shoppinglistapplication.data.repository.AddItemRepository
-import com.example.shoppinglistapplication.data.repository.NoteListRepository
-import com.example.shoppinglistapplication.data.repository.ShoppingListRepository
+import com.example.shoppinglistapplication.roomData.MainDB
+import com.example.shoppinglistapplication.roomData.repoImpl.AddItemRepoImpl
+import com.example.shoppinglistapplication.roomData.repoImpl.NoteListRepoImpl
+import com.example.shoppinglistapplication.roomData.repoImpl.ShoppingListRepoImpl
+import com.example.shoppinglistapplication.roomData.repository.AddItemRepository
+import com.example.shoppinglistapplication.roomData.repository.NoteListRepository
+import com.example.shoppinglistapplication.roomData.repository.ShoppingListRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

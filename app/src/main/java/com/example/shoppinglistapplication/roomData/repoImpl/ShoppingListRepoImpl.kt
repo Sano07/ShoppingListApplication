@@ -1,8 +1,8 @@
-package com.example.shoppinglistapplication.data.repoImpl
+package com.example.shoppinglistapplication.roomData.repoImpl
 
-import com.example.shoppinglistapplication.data.repository.ShoppingListRepository
-import com.example.shoppinglistapplication.data.dao.ShoppingListTableDao
-import com.example.shoppinglistapplication.data.entity.ShoppingListTableEntity
+import com.example.shoppinglistapplication.roomData.repository.ShoppingListRepository
+import com.example.shoppinglistapplication.roomData.dao.ShoppingListTableDao
+import com.example.shoppinglistapplication.roomData.entity.ShoppingListTableEntity
 import kotlinx.coroutines.flow.Flow
 
 // имплементация репозитория в который обращается репозиторий, в который обращается вью модел

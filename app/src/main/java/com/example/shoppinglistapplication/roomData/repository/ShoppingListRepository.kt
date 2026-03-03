@@ -1,6 +1,6 @@
-package com.example.shoppinglistapplication.data.repository
+package com.example.shoppinglistapplication.roomData.repository
 
-import com.example.shoppinglistapplication.data.entity.ShoppingListTableEntity
+import com.example.shoppinglistapplication.roomData.entity.ShoppingListTableEntity
 import kotlinx.coroutines.flow.Flow
 
 // репозиторий в который обращается вью модел
