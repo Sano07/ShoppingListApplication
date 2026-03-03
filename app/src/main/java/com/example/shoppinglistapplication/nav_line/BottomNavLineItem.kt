@@ -7,8 +7,8 @@ sealed class BottomNavLineItem(
         val iconId : Int,
         val route : String
 ) {
-    object ListItem : BottomNavLineItem("List", R.drawable.ic_add, "route_1")
-    object NoteItem : BottomNavLineItem("Note", R.drawable.ic_add, "route_2")
-    object AboutItem : BottomNavLineItem("About", R.drawable.ic_add, "route_3")
-    object SettingsItem : BottomNavLineItem("Settings", R.drawable.ic_add, "route_4")
+    object ListItem : BottomNavLineItem("List", R.drawable.ic_add, "list_screen")
+    object NoteItem : BottomNavLineItem("Note", R.drawable.ic_note, "note_screen")
+    object AboutItem : BottomNavLineItem("About", R.drawable.ic_about, "about_screen")
+    object SettingsItem : BottomNavLineItem("Settings", R.drawable.ic_settings, "settings_screen")
 }
