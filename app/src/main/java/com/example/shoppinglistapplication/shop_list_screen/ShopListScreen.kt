@@ -9,12 +9,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import com.example.shoppinglistapplication.R
+import com.example.shoppinglistapplication.nav_line.BottomNavLine
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun ShopListScreen() {
     Scaffold(
-        bottomBar = {},
+        bottomBar = {
+            BottomNavLine()
+        },
         floatingActionButton = {
             FloatingActionButton(onClick = {}) {
                 Icon(
