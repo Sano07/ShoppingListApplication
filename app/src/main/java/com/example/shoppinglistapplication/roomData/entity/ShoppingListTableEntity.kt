@@ -9,6 +9,6 @@ data class ShoppingListTableEntity(
     val id: Int? = null,
     val name: String,
     val time: String,
-    val allItemsCount : String,
-    val allSelectedItemsCount: String
+    val allItemsCount : Int,
+    val allSelectedItemsCount: Int
 )
