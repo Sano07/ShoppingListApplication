@@ -8,7 +8,10 @@ import com.example.shoppinglistapplication.dialog.DialogEvent
 import com.example.shoppinglistapplication.roomData.entity.ShoppingListTableEntity
 import com.example.shoppinglistapplication.roomData.repository.ShoppingListRepository
 import com.example.shoppinglistapplication.utils.DialogController
+import com.example.shoppinglistapplication.utils.UiEvents
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -26,8 +29,13 @@ class ShoppingListViewModel @Inject constructor(
     override var showEditableText = mutableStateOf(false)
         private set
 
-    private val list = repository.getAllItems()
-    private var listItem : ShoppingListTableEntity? = null
+    // обработка UI ивентов
+    private val _outUiEvent = Channel<UiEvents>() // отправка ивента
+    val inUiEvent = _outUiEvent.receiveAsFlow()  // принимание ивента ( уже в корутине )
+
+
+    private val list = repository.getAllItems()  // глобальная переменная для записи item-ов в рамках текущего класса
+    private var listItem : ShoppingListTableEntity? = null   // переменная с одним item-ом , в рамках текущего класса
 
     fun onEvent(event: ShoppingListEvent) {
         when(event) {
@@ -45,7 +53,7 @@ class ShoppingListViewModel @Inject constructor(
                 }
             }
             is ShoppingListEvent.onShowItemClick -> {
-
+                sendUiEvent(UiEvents.navigate(event.route))
             }
             is ShoppingListEvent.onShowEditDialog -> {
                 // когда редактируем список покупок , сохраняем его в глобальную переменную listItem
@@ -91,4 +99,12 @@ class ShoppingListViewModel @Inject constructor(
             }
         }
     }
-}
+
+    // функция для отправки UI события
+    private fun  sendUiEvent(event: UiEvents) {
+        viewModelScope.launch {
+            _outUiEvent.send(event)
+        }
+    }
+
+ }
