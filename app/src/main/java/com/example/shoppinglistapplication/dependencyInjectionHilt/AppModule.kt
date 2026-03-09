@@ -16,27 +16,29 @@ import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 //модуль для даггер хилт
+// эти функции не используем, использует ДАГЕР ХИЛТ под капотом
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
     // инициализация базы данных
     @Provides
     @Singleton
-    fun provideMainDb(app: Application) : MainDB {
+    fun provideMainDb(app: Application) : MainDB {  // функция возвращает инициализированную БД
         return Room.databaseBuilder(
-            app,
-            MainDB::class.java,
-            "shop_list_db"
+            app,                                   // контекст Арр для построения БД
+            MainDB::class.java,                    // класс со структурой БД , таблицами и ДАО ( описаные запросы к БД )
+            "shop_list_db"                   // название БД
         ).build()
     }
 
-    // инициализация репозиториев
+    // инициализация репозиториев для которого выше инициализировали БД ,
+    // для репозиториев нужна БД
 
     @Provides
     @Singleton
-    fun provideShopRepo(db : MainDB) : ShoppingListRepository {
-        return ShoppingListRepoImpl(db.shoppingListTableDao)
-    }
+    fun provideShopRepo(db : MainDB) : ShoppingListRepository {  // инициализация репозитория
+        return ShoppingListRepoImpl(db.shoppingListTableDao)     // для имплементации репозитория нужен ДАО
+    }                                                            // он есть в БД, которую инициализировали выше
 
     @Provides
     @Singleton

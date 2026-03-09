@@ -1,5 +1,7 @@
 package com.example.shoppinglistapplication.utils
 
+// константы , названия роутов экранов
+
 object Routes {
     const val SHOPPING_LIST = "shopping_list"
     const val NOTE_LIST = "note_list"

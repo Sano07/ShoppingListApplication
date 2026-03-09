@@ -10,7 +10,7 @@ class ShoppingListRepoImpl(
     private val dao: ShoppingListTableDao
 ) : ShoppingListRepository {
     override suspend fun insertItem(item: ShoppingListTableEntity) {
-        dao.insertItem(item)
+        dao.insertItem(item)                                                // реализация функции записи описаной в Репозитории, вызовом описаным в ДАО
     }
     override suspend fun deleteItem(item: ShoppingListTableEntity) {
         dao.deleteItem(item)
