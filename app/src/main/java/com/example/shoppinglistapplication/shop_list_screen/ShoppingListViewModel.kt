@@ -1,13 +1,12 @@
 package com.example.shoppinglistapplication.shop_list_screen
 
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.shoppinglistapplication.dialog.DialogEvent
 import com.example.shoppinglistapplication.roomData.entity.ShoppingListTableEntity
 import com.example.shoppinglistapplication.roomData.repository.ShoppingListRepository
-import com.example.shoppinglistapplication.utils.DialogController
+import com.example.shoppinglistapplication.dialog.DialogController
 import com.example.shoppinglistapplication.utils.UiEvents
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
@@ -20,13 +19,13 @@ class ShoppingListViewModel @Inject constructor(
     private val repository: ShoppingListRepository,
 ) : ViewModel(), DialogController {
 
-    override var dialogTitle = mutableStateOf("")
+    override var dialogTitle = mutableStateOf("Darovva")
         private set // признак того, что записывать в эту переменную можно только в рамках текущего класса
     override var editableText = mutableStateOf("")
         private set
-    override var openDialog = mutableStateOf(false)
+    override var openDialog = mutableStateOf(true)
         private set
-    override var showEditableText = mutableStateOf(false)
+    override var showEditableText = mutableStateOf(true)
         private set
 
     // обработка UI ивентов
@@ -75,7 +74,7 @@ class ShoppingListViewModel @Inject constructor(
     }
 
     // обработка действий в диалоговом окне
-    fun onDialogEvent(event: DialogEvent) {
+    override fun onDialogEvent(event: DialogEvent) {
         when(event) {
             is DialogEvent.onCancel -> {
                 openDialog.value = false
