@@ -19,13 +19,13 @@ class ShoppingListViewModel @Inject constructor(
     private val repository: ShoppingListRepository,
 ) : ViewModel(), DialogController {
 
-    override var dialogTitle = mutableStateOf("Darovva")
+    override var dialogTitle = mutableStateOf("")
         private set // признак того, что записывать в эту переменную можно только в рамках текущего класса
     override var editableText = mutableStateOf("")
         private set
-    override var openDialog = mutableStateOf(true)
+    override var openDialog = mutableStateOf(false)
         private set
-    override var showEditableText = mutableStateOf(true)
+    override var showEditableText = mutableStateOf(false)
         private set
 
     // обработка UI ивентов
@@ -33,7 +33,7 @@ class ShoppingListViewModel @Inject constructor(
     val inUiEvent = _outUiEvent.receiveAsFlow()  // принимание ивента ( уже в корутине )
 
 
-    private val list = repository.getAllItems()  // глобальная переменная для записи item-ов в рамках текущего класса
+    val list = repository.getAllItems()  // глобальная переменная для записи item-ов в рамках текущего класса
     private var listItem : ShoppingListTableEntity? = null   // переменная с одним item-ом , в рамках текущего класса
 
     fun onEvent(event: ShoppingListEvent) {

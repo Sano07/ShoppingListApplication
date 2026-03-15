@@ -18,5 +18,4 @@ class ShoppingListRepoImpl(
     override fun getAllItems(): Flow<List<ShoppingListTableEntity>> {
         return dao.getAllItems()
     }
-
 }

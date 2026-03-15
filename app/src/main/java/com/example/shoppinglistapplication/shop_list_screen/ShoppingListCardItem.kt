@@ -3,6 +3,7 @@ package com.example.shoppinglistapplication.shop_list_screen
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -24,12 +25,17 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.example.shoppinglistapplication.R
+import com.example.shoppinglistapplication.roomData.entity.ShoppingListTableEntity
 import com.example.shoppinglistapplication.ui.theme.CounterGreen
 import com.example.shoppinglistapplication.ui.theme.EditYellow
+import com.example.shoppinglistapplication.ui.theme.GreenInfo
+import com.example.shoppinglistapplication.ui.theme.RedDelete
+import com.example.shoppinglistapplication.ui.theme.YellowEdit
 
-@Preview(showBackground = true)
 @Composable
-fun ShoppingListCardItem() {
+fun ShoppingListCardItem(
+    item : ShoppingListTableEntity
+) {
     ConstraintLayout(
         modifier = Modifier.padding(start = 3.dp, top = 18.dp, end = 3.dp)
     ) {
@@ -49,7 +55,8 @@ fun ShoppingListCardItem() {
                 modifier = Modifier.fillMaxWidth().padding(8.dp)
             ) {
                 Text(
-                    text = "List 1",
+                    modifier = Modifier.padding(top = 10.dp),
+                    text = item.name,
                     style = TextStyle(
                         color = Color.Black,
                         fontWeight = FontWeight.Bold,
@@ -57,15 +64,15 @@ fun ShoppingListCardItem() {
                     )
                 )
                 Text(
-                    text = "12/12/2026",
+                    text = item.time,
                     style = TextStyle(
                         color = Color.Gray,
                         fontSize = 12.sp
                     )
                 )
                 LinearProgressIndicator(
-                    modifier = Modifier.fillMaxWidth().padding(top = 5.dp)
-
+                    modifier = Modifier.fillMaxWidth().padding(top = 5.dp),
+                    progress = 0.5f
                 )
             }
 
@@ -83,7 +90,7 @@ fun ShoppingListCardItem() {
                 contentDescription = "delete",
                 modifier = Modifier
                     .clip(RoundedCornerShape(5.dp))
-                    .background(Color.Red)
+                    .background(RedDelete)
                     .padding(5.dp)
             )
         }
@@ -100,7 +107,7 @@ fun ShoppingListCardItem() {
                 contentDescription = "edit",
                 modifier = Modifier
                     .clip(RoundedCornerShape(5.dp))
-                    .background(EditYellow)
+                    .background(YellowEdit)
                     .padding(5.dp)
             )
         }
@@ -114,9 +121,9 @@ fun ShoppingListCardItem() {
         ) {
             Text(
                 modifier = Modifier
-                    .background(CounterGreen)
+                    .background(GreenInfo)
                     .padding(top = 6.dp, bottom = 7.dp, start = 6.dp, end = 6.dp),
-                text = "5/15",
+                text = "${item.allSelectedItemsCount}/${item.allItemsCount}",
                 style = TextStyle(fontWeight = FontWeight.Bold)
             )
         }
