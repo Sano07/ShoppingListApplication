@@ -16,16 +16,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.shoppinglistapplication.R
 import com.example.shoppinglistapplication.dialog.MainAlertDialog
 import com.example.shoppinglistapplication.navigation.NavigationGraph
-import com.example.shoppinglistapplication.shop_list_screen.ShoppingListViewModel
 import com.example.shoppinglistapplication.ui.theme.Orange
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun ShopListScreen(
+fun ShopListMainScreen(
+    mainNavHostController: NavHostController,
     viewModel: MainScreenViewModel = hiltViewModel()
 ) {
     val navController = rememberNavController()
@@ -36,7 +37,9 @@ fun ShopListScreen(
             bottomBar = { BottomNavLine(navController) }
         ) { padding ->
             Box(modifier = Modifier.padding(padding)) {
-                NavigationGraph(navController)
+                NavigationGraph(navController) { route ->
+                    mainNavHostController.navigate(route)
+                }
                 MainAlertDialog(viewModel)
             }
         }

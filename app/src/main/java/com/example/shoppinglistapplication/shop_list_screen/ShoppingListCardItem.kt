@@ -1,6 +1,7 @@
 package com.example.shoppinglistapplication.shop_list_screen
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -31,10 +32,12 @@ import com.example.shoppinglistapplication.ui.theme.EditYellow
 import com.example.shoppinglistapplication.ui.theme.GreenInfo
 import com.example.shoppinglistapplication.ui.theme.RedDelete
 import com.example.shoppinglistapplication.ui.theme.YellowEdit
+import com.example.shoppinglistapplication.utils.Routes
 
 @Composable
 fun ShoppingListCardItem(
-    item : ShoppingListTableEntity
+    item : ShoppingListTableEntity,
+    onEvent : (ShoppingListEvent) -> Unit
 ) {
     ConstraintLayout(
         modifier = Modifier.padding(start = 3.dp, top = 18.dp, end = 3.dp)
@@ -49,6 +52,8 @@ fun ShoppingListCardItem(
                     top.linkTo(parent.top)
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
+                }.clickable {
+                    onEvent(ShoppingListEvent.onShowItemClick(Routes.ADD_ITEM))
                 }
         ) {
             Column(
@@ -78,7 +83,9 @@ fun ShoppingListCardItem(
 
         }
         IconButton(
-            onClick = {},
+            onClick = {
+                onEvent(ShoppingListEvent.onShowDeleteDialog(item))
+            },
             modifier = Modifier.constrainAs(deleteButton) {
                 top.linkTo(card.top)
                 bottom.linkTo(card.top)
@@ -95,7 +102,9 @@ fun ShoppingListCardItem(
             )
         }
         IconButton(
-            onClick = {},
+            onClick = {
+                onEvent(ShoppingListEvent.onShowEditDialog(item))
+            },
             modifier = Modifier.constrainAs(editButton) {
                 top.linkTo(card.top)
                 bottom.linkTo(card.top)

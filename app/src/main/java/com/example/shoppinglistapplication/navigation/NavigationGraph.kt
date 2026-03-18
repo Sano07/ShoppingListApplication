@@ -11,12 +11,14 @@ import com.example.shoppinglistapplication.shop_list_screen.ShoppingListScreen
 import com.example.shoppinglistapplication.utils.Routes
 
 @Composable
-fun NavigationGraph(navController : NavHostController) {
+fun NavigationGraph(navController : NavHostController, onNavigate: (String) -> Unit) {
 
     NavHost(navController, startDestination = Routes.SHOPPING_LIST ) {
 
         composable(Routes.SHOPPING_LIST) {
-            ShoppingListScreen()
+            ShoppingListScreen() { route ->
+                onNavigate(route)
+            }
         }
         composable(Routes.NOTE_LIST) {
             NoteScreen()

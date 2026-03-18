@@ -32,6 +32,13 @@ class ShoppingListViewModel @Inject constructor(
     private val _outUiEvent = Channel<UiEvents>() // отправка ивента
     val inUiEvent = _outUiEvent.receiveAsFlow()  // принимание ивента ( уже в корутине )
 
+    // функция для отправки UI события
+    private fun  sendUiEvent(event: UiEvents) {
+        viewModelScope.launch {
+            _outUiEvent.send(event)
+        }
+    }
+
 
     val list = repository.getAllItems()  // глобальная переменная для записи item-ов в рамках текущего класса
     private var listItem : ShoppingListTableEntity? = null   // переменная с одним item-ом , в рамках текущего класса
@@ -39,6 +46,7 @@ class ShoppingListViewModel @Inject constructor(
     fun onEvent(event: ShoppingListEvent) {
         when(event) {
             is ShoppingListEvent.OnItemSave -> {
+                if (editableText.value.isEmpty()) return
                 viewModelScope.launch {
                     repository.insertItem(
                         ShoppingListTableEntity(
@@ -96,13 +104,6 @@ class ShoppingListViewModel @Inject constructor(
             is DialogEvent.onTextChange -> {
                 editableText.value = event.text
             }
-        }
-    }
-
-    // функция для отправки UI события
-    private fun  sendUiEvent(event: UiEvents) {
-        viewModelScope.launch {
-            _outUiEvent.send(event)
         }
     }
 
