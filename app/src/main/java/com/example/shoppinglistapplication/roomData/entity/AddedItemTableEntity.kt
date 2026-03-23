@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "add_item_table")
-data class AddItemTableEntity(
+data class AddedItemTableEntity(
     @PrimaryKey
     val id: Int? = null,
     val name: String,

@@ -5,18 +5,18 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.shoppinglistapplication.roomData.entity.AddItemTableEntity
+import com.example.shoppinglistapplication.roomData.entity.AddedItemTableEntity
 import com.example.shoppinglistapplication.roomData.entity.ShoppingListTableEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface AddItemDao {
+interface AddedItemDao {
     @Insert(onConflict = OnConflictStrategy.Companion.REPLACE)
-    suspend fun insertItem(item: AddItemTableEntity)
+    suspend fun insertItem(item: AddedItemTableEntity)
     @Delete
-    suspend fun deleteItem(item: AddItemTableEntity)
+    suspend fun deleteItem(item: AddedItemTableEntity)
     @Query("SELECT * FROM add_item_table where listId = :listId")
-    fun getAllItemsById(listId : Int) : Flow<List<AddItemTableEntity>>
+    fun getAllItemsById(listId : Int) : Flow<List<AddedItemTableEntity>>
     @Query("SELECT * FROM shop_list_table where id = :listId")
     suspend fun getListItemById(listId : Int) : ShoppingListTableEntity
     @Insert(onConflict = OnConflictStrategy.Companion.REPLACE)

@@ -1,21 +1,21 @@
 package com.example.shoppinglistapplication.roomData.repoImpl
 
-import com.example.shoppinglistapplication.roomData.entity.AddItemTableEntity
+import com.example.shoppinglistapplication.roomData.entity.AddedItemTableEntity
 import com.example.shoppinglistapplication.roomData.entity.ShoppingListTableEntity
-import com.example.shoppinglistapplication.roomData.repository.AddItemRepository
-import com.example.shoppinglistapplication.roomData.dao.AddItemDao
+import com.example.shoppinglistapplication.roomData.repository.AddedItemRepository
+import com.example.shoppinglistapplication.roomData.dao.AddedItemDao
 import kotlinx.coroutines.flow.Flow
 
-class AddItemRepoImpl(
-    private val dao : AddItemDao
-) : AddItemRepository {
-    override suspend fun insertItem(item: AddItemTableEntity) {
+class AddedItemRepoImpl(
+    private val dao : AddedItemDao
+) : AddedItemRepository {
+    override suspend fun insertItem(item: AddedItemTableEntity) {
         dao.insertItem(item)
     }
-    override suspend fun deleteItem(item: AddItemTableEntity) {
+    override suspend fun deleteItem(item: AddedItemTableEntity) {
         dao.deleteItem(item)
     }
-    override fun getAllItemsById(listId: Int): Flow<List<AddItemTableEntity>> {
+    override fun getAllItemsById(listId: Int): Flow<List<AddedItemTableEntity>> {
         return dao.getAllItemsById(listId)
     }
     override suspend fun getListItemById(listId: Int): ShoppingListTableEntity {

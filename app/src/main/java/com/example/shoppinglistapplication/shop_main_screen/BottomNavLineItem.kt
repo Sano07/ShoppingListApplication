@@ -1,4 +1,4 @@
-package com.example.shoppinglistapplication.main_screen
+package com.example.shoppinglistapplication.shop_main_screen
 
 import com.example.shoppinglistapplication.R
 import com.example.shoppinglistapplication.utils.Routes

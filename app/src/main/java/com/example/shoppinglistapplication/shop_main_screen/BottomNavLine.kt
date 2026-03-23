@@ -1,4 +1,4 @@
-package com.example.shoppinglistapplication.main_screen
+package com.example.shoppinglistapplication.shop_main_screen
 
 //noinspection UsingMaterialAndMaterial3Libraries
 import androidx.compose.material.BottomNavigation

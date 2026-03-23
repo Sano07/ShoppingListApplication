@@ -1,13 +1,11 @@
-package com.example.shoppinglistapplication.shop_list_screen
+package com.example.shoppinglistapplication.shopping_list_screen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.IconButton
@@ -21,14 +19,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.example.shoppinglistapplication.R
 import com.example.shoppinglistapplication.roomData.entity.ShoppingListTableEntity
-import com.example.shoppinglistapplication.ui.theme.CounterGreen
-import com.example.shoppinglistapplication.ui.theme.EditYellow
 import com.example.shoppinglistapplication.ui.theme.GreenInfo
 import com.example.shoppinglistapplication.ui.theme.RedDelete
 import com.example.shoppinglistapplication.ui.theme.YellowEdit
@@ -53,7 +48,7 @@ fun ShoppingListCardItem(
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
                 }.clickable {
-                    onEvent(ShoppingListEvent.onShowItemClick(Routes.ADD_ITEM))
+                    onEvent(ShoppingListEvent.onShowItemClick(Routes.ADD_ITEM + "/${item.id}"))
                 }
         ) {
             Column(

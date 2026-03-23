@@ -1,4 +1,4 @@
-package com.example.shoppinglistapplication.shop_list_screen
+package com.example.shoppinglistapplication.shopping_list_screen
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel

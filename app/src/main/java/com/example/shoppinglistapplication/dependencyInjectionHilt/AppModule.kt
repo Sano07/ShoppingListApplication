@@ -3,10 +3,10 @@ package com.example.shoppinglistapplication.dependencyInjectionHilt
 import android.app.Application
 import androidx.room.Room
 import com.example.shoppinglistapplication.roomData.MainDB
-import com.example.shoppinglistapplication.roomData.repoImpl.AddItemRepoImpl
+import com.example.shoppinglistapplication.roomData.repoImpl.AddedItemRepoImpl
 import com.example.shoppinglistapplication.roomData.repoImpl.NoteListRepoImpl
 import com.example.shoppinglistapplication.roomData.repoImpl.ShoppingListRepoImpl
-import com.example.shoppinglistapplication.roomData.repository.AddItemRepository
+import com.example.shoppinglistapplication.roomData.repository.AddedItemRepository
 import com.example.shoppinglistapplication.roomData.repository.NoteListRepository
 import com.example.shoppinglistapplication.roomData.repository.ShoppingListRepository
 import dagger.Module
@@ -42,8 +42,8 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideAddItemRepo(db : MainDB) : AddItemRepository {
-        return AddItemRepoImpl(db.addItemDao)
+    fun provideAddItemRepo(db : MainDB) : AddedItemRepository {
+        return AddedItemRepoImpl(db.addedItemDao)
     }
 
     @Provides

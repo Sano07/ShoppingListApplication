@@ -1,4 +1,4 @@
-package com.example.shoppinglistapplication.main_screen
+package com.example.shoppinglistapplication.shop_main_screen
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Box
@@ -20,14 +20,14 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.shoppinglistapplication.R
 import com.example.shoppinglistapplication.dialog.MainAlertDialog
-import com.example.shoppinglistapplication.navigation.NavigationGraph
+import com.example.shoppinglistapplication.navigation.GeneralNavigationGraph
 import com.example.shoppinglistapplication.ui.theme.Orange
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun ShopListMainScreen(
+fun ShopMainScreen(
     mainNavHostController: NavHostController,
-    viewModel: MainScreenViewModel = hiltViewModel()
+    viewModel: ShopMainScreenViewModel = hiltViewModel()
 ) {
     val navController = rememberNavController()
 
@@ -37,7 +37,7 @@ fun ShopListMainScreen(
             bottomBar = { BottomNavLine(navController) }
         ) { padding ->
             Box(modifier = Modifier.padding(padding)) {
-                NavigationGraph(navController) { route ->
+                GeneralNavigationGraph(navController) { route ->
                     mainNavHostController.navigate(route)
                 }
                 MainAlertDialog(viewModel)
@@ -45,7 +45,7 @@ fun ShopListMainScreen(
         }
         FloatingActionButton(
             onClick = {
-                viewModel.onEvent(MainScreenEvent.OnShowEditDialog)
+                viewModel.onEvent(ShopMainScreenEvent.OnShowEditDialog)
             },
             modifier = Modifier
                 // реализация наезда кнопки на bottomBar , в материал3

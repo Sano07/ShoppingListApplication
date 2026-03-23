@@ -1,4 +1,4 @@
-package com.example.shoppinglistapplication.shop_list_screen
+package com.example.shoppinglistapplication.shopping_list_screen
 
 import com.example.shoppinglistapplication.roomData.entity.ShoppingListTableEntity
 
