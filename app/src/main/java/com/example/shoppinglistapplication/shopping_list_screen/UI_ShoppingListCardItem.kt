@@ -30,7 +30,7 @@ import com.example.shoppinglistapplication.ui.theme.YellowEdit
 import com.example.shoppinglistapplication.utils.Routes
 
 @Composable
-fun ShoppingListCardItem(
+fun UI_ShoppingListCardItem(
     item : ShoppingListTableEntity,
     onEvent : (ShoppingListEvent) -> Unit
 ) {
@@ -48,7 +48,7 @@ fun ShoppingListCardItem(
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
                 }.clickable {
-                    onEvent(ShoppingListEvent.onShowItemClick(Routes.ADD_ITEM + "/${item.id}"))
+                    onEvent(ShoppingListEvent.onShowItemClick(Routes.ADDED_ITEM + "/${item.id}"))
                 }
         ) {
             Column(

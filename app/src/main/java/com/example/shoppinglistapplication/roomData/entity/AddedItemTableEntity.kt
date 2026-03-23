@@ -3,7 +3,7 @@ package com.example.shoppinglistapplication.roomData.entity
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "add_item_table")
+@Entity(tableName = "added_item_table")
 data class AddedItemTableEntity(
     @PrimaryKey
     val id: Int? = null,

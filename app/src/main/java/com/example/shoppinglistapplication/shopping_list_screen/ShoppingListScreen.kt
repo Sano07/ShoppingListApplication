@@ -41,7 +41,7 @@ fun ShoppingListScreen(
         columns = GridCells.Fixed(2)
     ) {
         items(itemsList.value) { list ->
-            ShoppingListCardItem(list) { event ->
+            UI_ShoppingListCardItem(list) { event ->
                 viewModel.onEvent(event)
             }
         }
