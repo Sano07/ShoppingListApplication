@@ -2,6 +2,7 @@ package com.example.shoppinglistapplication.dependencyInjectionHilt
 
 import android.app.Application
 import androidx.room.Room
+import com.example.shoppinglistapplication.roomData.MIGRATION_1_2
 import com.example.shoppinglistapplication.roomData.MainDB
 import com.example.shoppinglistapplication.roomData.repoImpl.AddedItemRepoImpl
 import com.example.shoppinglistapplication.roomData.repoImpl.NoteListRepoImpl
@@ -28,8 +29,9 @@ object AppModule {
             app,                                   // контекст Арр для построения БД
             MainDB::class.java,                    // класс со структурой БД , таблицами и ДАО ( описаные запросы к БД )
             "shop_list_db"                   // название БД
-        ).build()
+        ).addMigrations(MIGRATION_1_2).build()
     }
+
 
     // инициализация репозиториев для которого выше инициализировали БД ,
     // для репозиториев нужна БД

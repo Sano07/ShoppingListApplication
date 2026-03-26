@@ -12,7 +12,7 @@ import com.example.shoppinglistapplication.roomData.entity.ShoppingListTableEnti
 
 @Database(
     entities = [AddedItemTableEntity::class, NoteItemTableEntity::class, ShoppingListTableEntity::class],
-    version = 1
+    version = 2
 )
 abstract class MainDB : RoomDatabase(){
     abstract val shoppingListTableDao: ShoppingListTableDao
