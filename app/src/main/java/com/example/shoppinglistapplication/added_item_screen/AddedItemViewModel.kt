@@ -58,7 +58,7 @@ class AddedItemViewModel @Inject constructor(
                     repository.insertItem(
                         AddedItemTableEntity(
                             addedItem?.id,
-                            itemText.value,
+                            addedItem?.name ?: itemText.value,
                             addedItem?.isChecked ?: false,
                             listId
                             )
@@ -106,8 +106,9 @@ class AddedItemViewModel @Inject constructor(
 
             is DialogEvent.onConfirm -> {
                 openDialog.value = false
-                itemText.value = editableText.value
-                editableText.value = ""
+                addedItem = addedItem?.copy(name = editableText.value)
+                editableText.value = "",
+                onEvent(AddedItemScreenUIEvent.OnItemSave)
             }
 
             is DialogEvent.onTextChange -> {

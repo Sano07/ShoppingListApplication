@@ -39,7 +39,7 @@ import com.example.shoppinglistapplication.ui.theme.White_2
 @Composable
 fun AddItemScreen(
     viewModel: AddedItemViewModel = hiltViewModel()
-){
+) {
     val scaffoldState = rememberScaffoldState()
     val itemsList = viewModel.itemsList?.collectAsState(
         initial = emptyList()
@@ -65,8 +65,10 @@ fun AddItemScreen(
                 ) {
                     TextField(
                         modifier = Modifier.weight(1f),
-                        value = "",
-                        onValueChange = {},
+                        value = viewModel.itemText.value,
+                        onValueChange = {
+                            viewModel.onEvent(AddedItemScreenUIEvent.OnTextChange(it))
+                        },
                         label = {
                             Text(
                                 text = "New item:",
@@ -85,7 +87,9 @@ fun AddItemScreen(
                         singleLine = true
                     )
                     IconButton(
-                        onClick = {}
+                        onClick = {
+                            viewModel.onEvent(AddedItemScreenUIEvent.OnItemSave)
+                        }
                     ) {
                         Icon(
                             painter = painterResource(id = R.drawable.ic_add),
@@ -97,11 +101,16 @@ fun AddItemScreen(
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(top = 10.dp)
+                    .padding(top = 10.dp, start = 5.dp, end = 5.dp)
             ) {
-                if(itemsList != null) {
+                if (itemsList != null) {
                     items(itemsList.value) {
-                        UI_AddedScreenItemCard(item = it, onEvent = {})
+                        UI_AddedScreenItemCard(
+                            item = it,
+                            onEvent = { event ->
+                                viewModel.onEvent(event)
+                            }
+                        )
                     }
                 }
             }
