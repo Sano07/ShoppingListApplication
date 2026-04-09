@@ -9,9 +9,12 @@ import com.example.shoppinglistapplication.dialog.DialogEvent
 import com.example.shoppinglistapplication.roomData.entity.AddedItemTableEntity
 import com.example.shoppinglistapplication.roomData.entity.ShoppingListTableEntity
 import com.example.shoppinglistapplication.roomData.repository.AddedItemRepository
+import com.example.shoppinglistapplication.utils.UiEvents
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -20,6 +23,17 @@ class AddedItemViewModel @Inject constructor(
     private val repository: AddedItemRepository,
     savedStateHandle: SavedStateHandle  // состояние которое хранит аргументы, которые передаем при навигации
 ) : ViewModel(), DialogController {
+
+    // обработка UI ивентов
+    private val _outUiEvent = Channel<UiEvents>() // отправка ивента
+    val inUiEvent = _outUiEvent.receiveAsFlow()  // принимание ивента ( уже в корутине )
+
+    // функция для отправки UI события на экране
+    private fun sendUiEvent(event: UiEvents) {
+        viewModelScope.launch {
+            _outUiEvent.send(event)
+        }
+    }
 
     var itemsList: Flow<List<AddedItemTableEntity>>? = null
 
@@ -55,13 +69,27 @@ class AddedItemViewModel @Inject constructor(
             is AddedItemScreenUIEvent.OnItemSave -> {
                 viewModelScope.launch {
                     if (listId == -1) return@launch
+
+                    if (addedItem != null) {
+                        if (addedItem!!.name.isEmpty()) {
+                            sendUiEvent(UiEvents.showSnackBar("Name must not be empty"))
+                            return@launch
+                        }
+                    } else {
+                        if (itemText.value.isEmpty()) {
+                            sendUiEvent(UiEvents.showSnackBar("Name must not be empty"))
+                            return@launch
+                        }
+
+                    }
+
                     repository.insertItem(
                         AddedItemTableEntity(
                             addedItem?.id,
                             addedItem?.name ?: itemText.value,
                             addedItem?.isChecked ?: false,
                             listId
-                            )
+                        )
                     )
                     itemText.value = ""
                     addedItem = null
@@ -107,7 +135,7 @@ class AddedItemViewModel @Inject constructor(
             is DialogEvent.onConfirm -> {
                 openDialog.value = false
                 addedItem = addedItem?.copy(name = editableText.value)
-                editableText.value = "",
+                editableText.value = ""
                 onEvent(AddedItemScreenUIEvent.OnItemSave)
             }
 
@@ -123,7 +151,7 @@ class AddedItemViewModel @Inject constructor(
                 var counter = 0
 
                 items.forEach { item ->
-                    if(item.isChecked)
+                    if (item.isChecked)
                         counter++
                 }
                 shoppingListItemForChange?.copy(

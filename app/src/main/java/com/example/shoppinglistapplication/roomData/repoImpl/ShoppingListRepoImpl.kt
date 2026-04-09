@@ -13,7 +13,7 @@ class ShoppingListRepoImpl(
         dao.insertItem(item)                                                // реализация функции записи описаной в Репозитории, вызовом описаным в ДАО
     }
     override suspend fun deleteItem(item: ShoppingListTableEntity) {
-        dao.deleteItem(item)
+        dao.deleteShoppingListAndAddedItems(item)
     }
     override fun getAllItems(): Flow<List<ShoppingListTableEntity>> {
         return dao.getAllItems()
